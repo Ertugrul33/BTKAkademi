@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_DASHBOARDORNEK1_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="DESKTOP-RFML4O9\SQLEXPRESS" />
+          <Parameter Name="database" Value="DASHBOARDORNEK1" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM SALETARGETS</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="LOGICALREF" Type="Int32" />
+            <Field Name="REGION" Type="String" />
+            <Field Name="BRANCH" Type="String" />
+            <Field Name="CITY" Type="String" />
+            <Field Name="MONTH_" Type="Int32" />
+            <Field Name="DATE_" Type="DateTime" />
+            <Field Name="CATEGORY_NAME1" Type="String" />
+            <Field Name="LINENET" Type="Double" />
+            <Field Name="TARGET_" Type="Double" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Gauge ComponentName="gaugeDashboardItem1" Name="Bölge Bazlı Hedefe Olan Uzaklık" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="TARGET_" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="REGION" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <GaugeElement>
+        <ActualValue DefaultId="DataItem0" />
+        <TargetValue DefaultId="DataItem1" />
+        <DeltaOptions ValueType="PercentOfTarget" />
+        <AbsoluteVariationNumericFormat Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        <PercentVariationNumericFormat CustomFormatString="" />
+        <PercentOfTargetNumericFormat CustomFormatString="" />
+        <ScaleLabelNumericFormat Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+      </GaugeElement>
+    </Gauge>
+    <Grid ComponentName="gridDashboardItem1" Name="Bölge Bazlı Satış Performansı" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="TARGET_" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="LINENET" DefaultId="DataItem2" />
+        <Measure DataMember="TARGET_" DefaultId="DataItem3" />
+        <Dimension DataMember="REGION" DefaultId="DataItem4" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Bölgeler">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Toplam Satış">
+          <Measure DefaultId="DataItem0" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Toplam Hedef">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridDeltaColumn Name="Hedefe Olan Uzaklık (%) ">
+          <ActualValue DefaultId="DataItem2" />
+          <TargetValue DefaultId="DataItem3" />
+          <DeltaOptions ValueType="PercentOfTarget" />
+        </GridDeltaColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Gauge ComponentName="gaugeDashboardItem2" Name="Kategori Bazlı Hedefe Olan Uzaklık" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="TARGET_" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CATEGORY_NAME1" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <GaugeElement>
+        <ActualValue DefaultId="DataItem0" />
+        <TargetValue DefaultId="DataItem1" />
+        <DeltaOptions ValueType="PercentOfTarget" />
+        <AbsoluteVariationNumericFormat Unit="Ones" IncludeGroupSeparator="true" />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <ScaleLabelNumericFormat Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+      </GaugeElement>
+    </Gauge>
+    <Grid ComponentName="gridDashboardItem2" Name="Kategori Bazlı Satış Performansı" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="TARGET_" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="LINENET" DefaultId="DataItem2" />
+        <Measure DataMember="TARGET_" DefaultId="DataItem3" />
+        <Dimension DataMember="CATEGORY_NAME1" DefaultId="DataItem4" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Kategoriler">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Toplam Satış">
+          <Measure DefaultId="DataItem0" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Toplam Hedef">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridDeltaColumn Name="Hedefe Olan Uzaklık (%) ">
+          <ActualValue DefaultId="DataItem2" />
+          <TargetValue DefaultId="DataItem3" />
+          <DeltaOptions ValueType="PercentOfTarget" />
+        </GridDeltaColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Gauge ComponentName="gaugeDashboardItem3" Name="İl Bazlı Hedefe Olan Uzaklık" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="TARGET_" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CITY" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <GaugeElement>
+        <ActualValue DefaultId="DataItem0" />
+        <TargetValue DefaultId="DataItem1" />
+        <DeltaOptions ValueType="PercentOfTarget" />
+        <AbsoluteVariationNumericFormat Unit="Ones" IncludeGroupSeparator="true" />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <ScaleLabelNumericFormat Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+      </GaugeElement>
+    </Gauge>
+    <Grid ComponentName="gridDashboardItem3" Name="İl Bazlı Satış Performansı" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="TARGET_" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="LINENET" DefaultId="DataItem2" />
+        <Measure DataMember="TARGET_" DefaultId="DataItem3" />
+        <Dimension DataMember="CITY" DefaultId="DataItem4" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Şehirler">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Toplam Satış">
+          <Measure DefaultId="DataItem0" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Toplam Hedef">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridDeltaColumn Name="Hedefe Olan Uzaklık (%) ">
+          <ActualValue DefaultId="DataItem2" />
+          <TargetValue DefaultId="DataItem3" />
+          <DeltaOptions ValueType="PercentOfTarget" />
+        </GridDeltaColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+  </Items>
+  <ColorScheme>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-785920">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Akdeniz" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-3833">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Doğu Anadolu" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-16318717">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Ege" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-16716044">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Güneydoğu Anadolu" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-16580356">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="İç Anadolu" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-4062988">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Karadeniz" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-13842540">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Marmara" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+  </ColorScheme>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutGroup Weight="45.129224652087473">
+        <LayoutItem DashboardItem="gaugeDashboardItem1" Weight="32.180293501048219" />
+        <LayoutItem DashboardItem="gaugeDashboardItem2" Weight="31.656184486373167" />
+        <LayoutItem DashboardItem="gaugeDashboardItem3" Weight="36.163522012578618" />
+      </LayoutGroup>
+      <LayoutGroup Weight="54.870775347912527">
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="32.180293501048219" />
+        <LayoutItem DashboardItem="gridDashboardItem2" Weight="31.656184486373167" />
+        <LayoutItem DashboardItem="gridDashboardItem3" Weight="36.163522012578618" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

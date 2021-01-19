@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Tarih Bazli Satislar" />
+  <DataSources>
+    <SqlDataSource Name="SALES" ComponentName="sqlDataSource1">
+      <Connection Name="ORNEKDASHBOARD1" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="SALES">
+        <Tables>
+          <Table Name="SALES" />
+        </Tables>
+        <Columns>
+          <Column Table="SALES" Name="LOGICALREF" />
+          <Column Table="SALES" Name="COUNT_" />
+          <Column Table="SALES" Name="TARGET_" />
+          <Column Table="SALES" Name="ITEMCODE" />
+          <Column Table="SALES" Name="ITEMNAME" />
+          <Column Table="SALES" Name="FICHENO" />
+          <Column Table="SALES" Name="DATE_" />
+          <Column Table="SALES" Name="AMOUNT" />
+          <Column Table="SALES" Name="PRICE" />
+          <Column Table="SALES" Name="LINETOTAL" />
+          <Column Table="SALES" Name="LINENET" />
+          <Column Table="SALES" Name="BRANCHNR" />
+          <Column Table="SALES" Name="BRANCH" />
+          <Column Table="SALES" Name="SALESMAN" />
+          <Column Table="SALES" Name="CITY" />
+          <Column Table="SALES" Name="REGION" />
+          <Column Table="SALES" Name="LATITUDE" />
+          <Column Table="SALES" Name="LONGITUDE" />
+          <Column Table="SALES" Name="CLIENTNAME" />
+          <Column Table="SALES" Name="BRANDCODE" />
+          <Column Table="SALES" Name="BRAND" />
+          <Column Table="SALES" Name="CATEGORY" />
+          <Column Table="SALES" Name="CATEGORYCODE" />
+          <Column Table="SALES" Name="CATEGORY_CODE1" />
+          <Column Table="SALES" Name="CATEGORY_NAME1" />
+          <Column Table="SALES" Name="CATEGORY_CODE2" />
+          <Column Table="SALES" Name="CATEGORY_NAME2" />
+          <Column Table="SALES" Name="CATEGORY_CODE3" />
+          <Column Table="SALES" Name="CATEGORY_NAME3" />
+          <Column Table="SALES" Name="CATEGORY_CODE4" />
+          <Column Table="SALES" Name="CATEGORY_NAME4" />
+          <Column Table="SALES" Name="STARTDATE" />
+          <Column Table="SALES" Name="ENDDATE" />
+          <Column Table="SALES" Name="CLIENTGENDER" />
+          <Column Table="SALES" Name="CLIENTBIRTHDATE" />
+          <Column Table="SALES" Name="BUYINGPRICE" />
+          <Column Table="SALES" Name="COST" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="sqlDataSource1" DataMember="SALES">
+      <DataItems>
+        <Measure DataMember="LINENET" DefaultId="DataItem0" />
+        <Dimension DataMember="DATE_" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="Line">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" DataSource="sqlDataSource1" DataMember="SALES">
+      <DataItems>
+        <Dimension DataMember="CATEGORY_NAME1" DefaultId="DataItem0" />
+        <Dimension DataMember="CATEGORY_NAME2" DefaultId="DataItem1" />
+        <Dimension DataMember="CATEGORY_NAME3" DefaultId="DataItem2" />
+        <Dimension DataMember="DATE_" DateTimeGroupInterval="Month" DefaultId="DataItem3" />
+        <Measure DataMember="LINENET" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Columns>
+        <Column DefaultId="DataItem3" />
+      </Columns>
+      <Rows>
+        <Row DefaultId="DataItem0" />
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem2" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem4" />
+      </Values>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="chartDashboardItem1" />
+      <LayoutItem DashboardItem="pivotDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

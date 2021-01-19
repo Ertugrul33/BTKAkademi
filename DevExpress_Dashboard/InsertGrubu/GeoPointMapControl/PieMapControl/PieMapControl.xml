@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_DASHBOARDORNEK1_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="DESKTOP-RFML4O9\SQLEXPRESS" />
+          <Parameter Name="database" Value="DASHBOARDORNEK1" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM SALES</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="LOGICALREF" Type="Int32" />
+            <Field Name="COUNT_" Type="Int32" />
+            <Field Name="TARGET_" Type="Int32" />
+            <Field Name="ITEMCODE" Type="String" />
+            <Field Name="ITEMNAME" Type="String" />
+            <Field Name="FICHENO" Type="String" />
+            <Field Name="DATE_" Type="DateTime" />
+            <Field Name="AMOUNT" Type="Double" />
+            <Field Name="PRICE" Type="Double" />
+            <Field Name="LINETOTAL" Type="Double" />
+            <Field Name="LINENET" Type="Double" />
+            <Field Name="BRANCHNR" Type="Int32" />
+            <Field Name="BRANCH" Type="String" />
+            <Field Name="SALESMAN" Type="String" />
+            <Field Name="CITY" Type="String" />
+            <Field Name="REGION" Type="String" />
+            <Field Name="LATITUDE" Type="Double" />
+            <Field Name="LONGITUDE" Type="Double" />
+            <Field Name="CLIENTNAME" Type="String" />
+            <Field Name="BRANDCODE" Type="String" />
+            <Field Name="BRAND" Type="String" />
+            <Field Name="CATEGORY" Type="String" />
+            <Field Name="CATEGORYCODE" Type="String" />
+            <Field Name="CATEGORY_CODE1" Type="String" />
+            <Field Name="CATEGORY_NAME1" Type="String" />
+            <Field Name="CATEGORY_CODE2" Type="String" />
+            <Field Name="CATEGORY_NAME2" Type="String" />
+            <Field Name="CATEGORY_CODE3" Type="String" />
+            <Field Name="CATEGORY_NAME3" Type="String" />
+            <Field Name="CATEGORY_CODE4" Type="String" />
+            <Field Name="CATEGORY_NAME4" Type="String" />
+            <Field Name="STARTDATE" Type="DateTime" />
+            <Field Name="ENDDATE" Type="DateTime" />
+            <Field Name="CLIENTGENDER" Type="String" />
+            <Field Name="CLIENTBIRTHDATE" Type="DateTime" />
+            <Field Name="BUYINGPRICE" Type="Double" />
+            <Field Name="COST" Type="Double" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <PieMap ComponentName="pieMapDashboardItem1" Name="Map 1" DataSource="dashboardSqlDataSource1" DataMember="Query" ShapefileArea="Custom" ShapeTitleAttributeName="NAME">
+      <DataItems>
+        <Dimension DataMember="CATEGORY_NAME1" TopNEnabled="true" TopNMeasure="DataItem4" DefaultId="DataItem0" />
+        <Dimension DataMember="CITY" DefaultId="DataItem1" />
+        <Dimension DataMember="LATITUDE" DefaultId="DataItem2" />
+        <Dimension DataMember="LONGITUDE" DefaultId="DataItem3" />
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CATEGORY_NAME1" TopNEnabled="true" TopNMeasure="DataItem4" DefaultId="DataItem5" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </HiddenDimensions>
+      <CustomShapefile Url="C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DevexpressDashboardKaynaklar\shp\Il.shp" />
+      <ViewArea TopLatitude="42.0983882" BottomLatitude="35.8136997" LeftLongitude="25.668509" RightLongitude="44.817931" CenterPointLatitude="39.025835264804208" CenterPointLongitude="35.243220000000008" />
+      <MapLegend />
+      <WeightedLegend />
+      <Latitude DefaultId="DataItem2" />
+      <Longitude DefaultId="DataItem3" />
+      <TooltipDimensions>
+        <TooltipDimension DefaultId="DataItem1" />
+      </TooltipDimensions>
+      <Argument DefaultId="DataItem5" />
+      <Values>
+        <Value DefaultId="DataItem4" />
+      </Values>
+    </PieMap>
+  </Items>
+  <ColorScheme>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-13389376">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="CATEGORY_NAME1" />
+          <Value Type="System.String" Value="İÇECEK" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-14210356">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="CATEGORY_NAME1" />
+          <Value Type="System.String" Value="KAĞIT" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-2806589">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="CATEGORY_NAME1" />
+          <Value Type="System.String" Value="KOZMETİK" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-192508">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="CATEGORY_NAME1" />
+          <Value Type="System.String" Value="MEYVE SEBZE" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+  </ColorScheme>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="pieMapDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

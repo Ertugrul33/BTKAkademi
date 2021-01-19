@@ -1,0 +1,12 @@
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\bin\Debug\DashboardOrnek1.exe.config
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\bin\Debug\DashboardOrnek1.exe
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\bin\Debug\DashboardOrnek1.pdb
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.csprojResolveAssemblyReference.cache
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.Form1.resources
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.frmDesigner.resources
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.Properties.Resources.resources
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.csproj.GenerateResource.Cache
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.exe.licenses
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.exe
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.pdb
+C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DashboardOrnek1\DashboardOrnek1\obj\Debug\DashboardOrnek1.frmViewer.resources

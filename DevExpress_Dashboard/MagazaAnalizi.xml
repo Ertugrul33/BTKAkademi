@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Mağaza Analizi" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_DASHBOARDORNEK1_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="DESKTOP-RFML4O9\SQLEXPRESS" />
+          <Parameter Name="database" Value="DASHBOARDORNEK1" />
+          <Parameter Name="useIntegratedSecurity" Value="False" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM SALES</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="LOGICALREF" Type="Int32" />
+            <Field Name="COUNT_" Type="Int32" />
+            <Field Name="TARGET_" Type="Int32" />
+            <Field Name="ITEMCODE" Type="String" />
+            <Field Name="ITEMNAME" Type="String" />
+            <Field Name="FICHENO" Type="String" />
+            <Field Name="DATE_" Type="DateTime" />
+            <Field Name="AMOUNT" Type="Double" />
+            <Field Name="PRICE" Type="Double" />
+            <Field Name="LINETOTAL" Type="Double" />
+            <Field Name="LINENET" Type="Double" />
+            <Field Name="BRANCHNR" Type="Int32" />
+            <Field Name="BRANCH" Type="String" />
+            <Field Name="SALESMAN" Type="String" />
+            <Field Name="CITY" Type="String" />
+            <Field Name="REGION" Type="String" />
+            <Field Name="LATITUDE" Type="Double" />
+            <Field Name="LONGITUDE" Type="Double" />
+            <Field Name="CLIENTNAME" Type="String" />
+            <Field Name="BRANDCODE" Type="String" />
+            <Field Name="BRAND" Type="String" />
+            <Field Name="CATEGORY" Type="String" />
+            <Field Name="CATEGORYCODE" Type="String" />
+            <Field Name="CATEGORY_CODE1" Type="String" />
+            <Field Name="CATEGORY_NAME1" Type="String" />
+            <Field Name="CATEGORY_CODE2" Type="String" />
+            <Field Name="CATEGORY_NAME2" Type="String" />
+            <Field Name="CATEGORY_CODE3" Type="String" />
+            <Field Name="CATEGORY_NAME3" Type="String" />
+            <Field Name="CATEGORY_CODE4" Type="String" />
+            <Field Name="CATEGORY_NAME4" Type="String" />
+            <Field Name="STARTDATE" Type="DateTime" />
+            <Field Name="ENDDATE" Type="DateTime" />
+            <Field Name="CLIENTGENDER" Type="String" />
+            <Field Name="CLIENTBIRTHDATE" Type="DateTime" />
+            <Field Name="BUYINGPRICE" Type="Double" />
+            <Field Name="COST" Type="Double" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Şubeler" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="CITY" Name="Şube" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="CLIENTNAME" Name="Müşteri Sayısı" SummaryType="CountDistinct" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SALESMAN" Name="Kasiyer Sayısı" SummaryType="CountDistinct" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="COUNT_" Name="Toplam Okutma" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Weight="67.270992366412216">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="62.977099236641223">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="80.1526717557252">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="80.1526717557252">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="84.446564885496187">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Şube Seçiniz" DataSource="dashboardSqlDataSource1" DataMember="Query" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="CITY" Name="Şehir" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Chart ComponentName="chartDashboardItem1" Name="Tarih Bazlı Satış" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="DATE_" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <AxisY TitleVisible="false" />
+          <Series>
+            <Simple SeriesType="Line">
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pie ComponentName="pieDashboardItem1" Name="Kategorilere Göre Dağılım" DataSource="dashboardSqlDataSource1" DataMember="Query" ShowPieCaptions="false">
+      <DataItems>
+        <Dimension DataMember="CATEGORY_NAME1" SortOrder="Descending" SortByMeasure="DataItem1" TopNEnabled="true" TopNShowOthers="true" TopNCount="6" TopNMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pie>
+    <Chart ComponentName="chartDashboardItem2" Name="Markalara Göre Dağılım" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="BRAND" TopNEnabled="true" TopNCount="10" TopNMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <AxisY TitleVisible="false" />
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Grid ComponentName="gridDashboardItem2" Name="En Çok Alışveriş Yapan Müşteriler" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CLIENTNAME" Name="Müşteri Adı" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="FICHENO" Name="Alışveriş Sayısı" SummaryType="CountDistinct" DefaultId="DataItem3" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Weight="96.945337620578783">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="58.60128617363344">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="69.453376205787777">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Treemap ComponentName="treemapDashboardItem1" Name="Haftanın Günlerine Göre Dağılım" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="DATE_" DateTimeGroupInterval="DayOfWeek" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Values>
+        <Value DefaultId="DataItem1" />
+      </Values>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+    </Treemap>
+    <Chart ComponentName="chartDashboardItem3" Name="Kasiyer Performası" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="SALESMAN" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="COUNT_" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <AxisY TitleVisible="false" />
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+        <Pane Name="Pane 2">
+          <AxisY TitleVisible="false" />
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem2" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="11.928429423459244" />
+      <LayoutGroup Weight="44.731610337972164">
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="23.584905660377359" />
+        <LayoutItem DashboardItem="gridDashboardItem2" Weight="23.375262054507338" />
+        <LayoutItem DashboardItem="chartDashboardItem3" Weight="24.633123689727462" />
+        <LayoutItem DashboardItem="treemapDashboardItem1" Weight="28.40670859538784" />
+      </LayoutGroup>
+      <LayoutGroup Weight="43.339960238568587">
+        <LayoutItem DashboardItem="chartDashboardItem1" Weight="33.123689727463315" />
+        <LayoutItem DashboardItem="pieDashboardItem1" Weight="28.825995807127882" />
+        <LayoutItem DashboardItem="chartDashboardItem2" Weight="38.0503144654088" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

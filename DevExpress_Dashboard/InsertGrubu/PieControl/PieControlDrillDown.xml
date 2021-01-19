@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_DASHBOARDORNEK1_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="DESKTOP-RFML4O9\SQLEXPRESS" />
+          <Parameter Name="database" Value="DASHBOARDORNEK1" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM SALES</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="LOGICALREF" Type="Int32" />
+            <Field Name="COUNT_" Type="Int32" />
+            <Field Name="TARGET_" Type="Int32" />
+            <Field Name="ITEMCODE" Type="String" />
+            <Field Name="ITEMNAME" Type="String" />
+            <Field Name="FICHENO" Type="String" />
+            <Field Name="DATE_" Type="DateTime" />
+            <Field Name="AMOUNT" Type="Double" />
+            <Field Name="PRICE" Type="Double" />
+            <Field Name="LINETOTAL" Type="Double" />
+            <Field Name="LINENET" Type="Double" />
+            <Field Name="BRANCHNR" Type="Int32" />
+            <Field Name="BRANCH" Type="String" />
+            <Field Name="SALESMAN" Type="String" />
+            <Field Name="CITY" Type="String" />
+            <Field Name="REGION" Type="String" />
+            <Field Name="LATITUDE" Type="Double" />
+            <Field Name="LONGITUDE" Type="Double" />
+            <Field Name="CLIENTNAME" Type="String" />
+            <Field Name="BRANDCODE" Type="String" />
+            <Field Name="BRAND" Type="String" />
+            <Field Name="CATEGORY" Type="String" />
+            <Field Name="CATEGORYCODE" Type="String" />
+            <Field Name="CATEGORY_CODE1" Type="String" />
+            <Field Name="CATEGORY_NAME1" Type="String" />
+            <Field Name="CATEGORY_CODE2" Type="String" />
+            <Field Name="CATEGORY_NAME2" Type="String" />
+            <Field Name="CATEGORY_CODE3" Type="String" />
+            <Field Name="CATEGORY_NAME3" Type="String" />
+            <Field Name="CATEGORY_CODE4" Type="String" />
+            <Field Name="CATEGORY_NAME4" Type="String" />
+            <Field Name="STARTDATE" Type="DateTime" />
+            <Field Name="ENDDATE" Type="DateTime" />
+            <Field Name="CLIENTGENDER" Type="String" />
+            <Field Name="CLIENTBIRTHDATE" Type="DateTime" />
+            <Field Name="BUYINGPRICE" Type="Double" />
+            <Field Name="COST" Type="Double" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pie ComponentName="pieDashboardItem2" Name="Kategori Bazlı Satış Oranı" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="CATEGORY_NAME1" TopNEnabled="true" TopNShowOthers="true" TopNMeasure="DataItem0" DefaultId="DataItem2" />
+        <Dimension DataMember="CATEGORY_NAME2" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem3" />
+        <Dimension DataMember="CATEGORY_NAME3" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+        <Dimension DataMember="CATEGORY_NAME4" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem4" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+        <Argument DefaultId="DataItem3" />
+        <Argument DefaultId="DataItem1" />
+        <Argument DefaultId="DataItem4" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Pie ComponentName="pieDashboardItem1" Name="Bölgesel Satış Oranları" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="REGION" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+        <Dimension DataMember="CATEGORY_NAME1" TopNEnabled="true" TopNShowOthers="true" TopNMeasure="DataItem0" DefaultId="DataItem2" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="pieDashboardItem1" Weight="50" />
+      <LayoutItem DashboardItem="pieDashboardItem2" Weight="50" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

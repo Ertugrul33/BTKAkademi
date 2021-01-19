@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="ORNEKDASHBOARD1" FromAppConfig="True">
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM SALES</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="LOGICALREF" Type="Int32" />
+            <Field Name="COUNT_" Type="Int32" />
+            <Field Name="TARGET_" Type="Int32" />
+            <Field Name="ITEMCODE" Type="String" />
+            <Field Name="ITEMNAME" Type="String" />
+            <Field Name="FICHENO" Type="String" />
+            <Field Name="DATE_" Type="DateTime" />
+            <Field Name="AMOUNT" Type="Double" />
+            <Field Name="PRICE" Type="Double" />
+            <Field Name="LINETOTAL" Type="Double" />
+            <Field Name="LINENET" Type="Double" />
+            <Field Name="BRANCHNR" Type="Int32" />
+            <Field Name="BRANCH" Type="String" />
+            <Field Name="SALESMAN" Type="String" />
+            <Field Name="CITY" Type="String" />
+            <Field Name="REGION" Type="String" />
+            <Field Name="LATITUDE" Type="Double" />
+            <Field Name="LONGITUDE" Type="Double" />
+            <Field Name="CLIENTNAME" Type="String" />
+            <Field Name="BRANDCODE" Type="String" />
+            <Field Name="BRAND" Type="String" />
+            <Field Name="CATEGORY" Type="String" />
+            <Field Name="CATEGORYCODE" Type="String" />
+            <Field Name="CATEGORY_CODE1" Type="String" />
+            <Field Name="CATEGORY_NAME1" Type="String" />
+            <Field Name="CATEGORY_CODE2" Type="String" />
+            <Field Name="CATEGORY_NAME2" Type="String" />
+            <Field Name="CATEGORY_CODE3" Type="String" />
+            <Field Name="CATEGORY_NAME3" Type="String" />
+            <Field Name="CATEGORY_CODE4" Type="String" />
+            <Field Name="CATEGORY_NAME4" Type="String" />
+            <Field Name="STARTDATE" Type="DateTime" />
+            <Field Name="ENDDATE" Type="DateTime" />
+            <Field Name="CLIENTGENDER" Type="String" />
+            <Field Name="CLIENTBIRTHDATE" Type="DateTime" />
+            <Field Name="BUYINGPRICE" Type="Double" />
+            <Field Name="COST" Type="Double" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <TreeView ComponentName="treeViewDashboardItem1" Name="Ay" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="DATE_" DefaultId="DataItem0" />
+        <Dimension DataMember="DATE_" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Dimension DataMember="DATE_" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem2" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+        <Dimension DefaultId="DataItem2" />
+      </FilterDimensions>
+    </TreeView>
+    <TreeView ComponentName="treeViewDashboardItem2" Name="Marka" DataSource="dashboardSqlDataSource1" DataMember="Query" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="BRAND" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </TreeView>
+    <Chart ComponentName="chartDashboardItem1" Name="En Çok Satış Yapılan Kategoriler" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="CATEGORY_NAME1" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Pivot ComponentName="pivotDashboardItem1" Name="En Çok Satış Yapılan Ürünler" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="BRAND" Name="Marka" DefaultId="DataItem0" />
+        <Dimension DataMember="ITEMNAME" SortOrder="Descending" SortByMeasure="DataItem2" TopNMeasure="DataItem2" DefaultId="DataItem1" />
+        <Measure DataMember="LINENET" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem0" />
+        <Row DefaultId="DataItem1" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem2" />
+      </Values>
+    </Pivot>
+    <Pivot ComponentName="pivotDashboardItem2" Name="Kategorilerin Markalara Göre Dağılımları" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CATEGORY_NAME1" DefaultId="DataItem1" />
+        <Dimension DataMember="BRAND" Name="Marka" DefaultId="DataItem0" />
+        <Dimension DataMember="ITEMNAME" DefaultId="DataItem3" />
+      </DataItems>
+      <Columns>
+        <Column DefaultId="DataItem0" />
+      </Columns>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem3" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem2" />
+      </Values>
+    </Pivot>
+    <Pivot ComponentName="pivotDashboardItem3" Name="Şubelerin Markalara Göre Dağılımları" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="BRAND" Name="Marka" DefaultId="DataItem0" />
+        <Dimension DataMember="REGION" DefaultId="DataItem1" />
+        <Dimension DataMember="CITY" DefaultId="DataItem3" />
+      </DataItems>
+      <Columns>
+        <Column DefaultId="DataItem0" />
+      </Columns>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem3" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem2" />
+      </Values>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutGroup Orientation="Vertical" Weight="59.433962264150942">
+        <LayoutGroup Weight="52.882703777335983">
+          <LayoutItem DashboardItem="treeViewDashboardItem1" Weight="28.042328042328041" />
+          <LayoutItem DashboardItem="chartDashboardItem1" Weight="71.957671957671963" />
+        </LayoutGroup>
+        <LayoutGroup Weight="47.117296222664017">
+          <LayoutItem DashboardItem="treeViewDashboardItem2" Weight="28.042328042328041" />
+          <LayoutItem DashboardItem="pivotDashboardItem1" Weight="71.957671957671963" />
+        </LayoutGroup>
+      </LayoutGroup>
+      <LayoutGroup Orientation="Vertical" Weight="40.566037735849058">
+        <LayoutItem DashboardItem="pivotDashboardItem3" Weight="52.882703777335983" />
+        <LayoutItem DashboardItem="pivotDashboardItem2" Weight="47.117296222664017" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

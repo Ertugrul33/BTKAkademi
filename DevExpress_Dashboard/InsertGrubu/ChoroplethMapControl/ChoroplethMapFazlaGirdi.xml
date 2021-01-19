@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_DASHBOARDORNEK1_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="DESKTOP-RFML4O9\SQLEXPRESS" />
+          <Parameter Name="database" Value="DASHBOARDORNEK1" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM COUNTRIES</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="COUNTRY" Type="String" />
+            <Field Name="REGION" Type="String" />
+            <Field Name="POPULATION" Type="Double" />
+            <Field Name="AREA" Type="Double" />
+            <Field Name="POPDENSITY" Type="Double" />
+            <Field Name="COASTLINE" Type="Double" />
+            <Field Name="NETMIGRATION" Type="Double" />
+            <Field Name="GDP" Type="Double" />
+            <Field Name="PHONESPER1000" Type="Double" />
+            <Field Name="BIRTHRATE" Type="Double" />
+            <Field Name="DEATHRATE" Type="Double" />
+            <Field Name="AGRICULTURE" Type="Double" />
+            <Field Name="INDUSTRY" Type="Double" />
+            <Field Name="SERVICE" Type="Double" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Ülkeler" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="COUNTRY" DefaultId="DataItem0" />
+        <Measure DataMember="AREA" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="POPULATION" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Ülke Adı">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Yüzölçümü">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Nüfus">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <ChoroplethMap ComponentName="choroplethMapDashboardItem1" Name="Dünya Haritası" DataSource="dashboardSqlDataSource1" DataMember="Query" ShapeTitleAttributeName="NAME" AttributeName="NAME" IncludeSummaryValueToShapeTitle="true">
+      <DataItems>
+        <Dimension DataMember="COUNTRY" DefaultId="DataItem0" />
+        <Measure DataMember="POPULATION" Name="Nüfus" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="AREA" Name="Yüzölçümü" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="BIRTHRATE" Name="Doğum Oranı" DefaultId="DataItem3" />
+        <Measure DataMember="DEATHRATE" Name="Ölüm Oranı" DefaultId="DataItem4" />
+        <Measure DataMember="AREA" Name="Yüzölçümü" DefaultId="DataItem5">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="GDP" Name="Yıllık Milli Gelir" DefaultId="DataItem6">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="BIRTHRATE" Name="Doğum Oranı" DefaultId="DataItem7">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="DEATHRATE" Name="Ölüm Oranı" DefaultId="DataItem8">
+          <NumericFormat Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <ViewArea TopLatitude="83.645130000000009" BottomLatitude="-55.611829999999962" LeftLongitude="-179.99999999999997" CenterPointLatitude="44.089080744803773" CenterPointLongitude="10.098071356993813" />
+      <MapLegend />
+      <WeightedLegend />
+      <TooltipMeasures>
+        <TooltipMeasure DefaultId="DataItem2" />
+        <TooltipMeasure DefaultId="DataItem3" />
+        <TooltipMeasure DefaultId="DataItem4" />
+      </TooltipMeasures>
+      <AttributeDimension DefaultId="DataItem0" />
+      <Maps>
+        <ValueMap Name="Nüfus" ValueName="Nüfus">
+          <Value DefaultId="DataItem1" />
+          <UniformScale />
+        </ValueMap>
+        <ValueMap>
+          <Value DefaultId="DataItem5" />
+          <UniformScale />
+          <GradientPalette StartColor="-4194304" EndColor="-16777024" />
+        </ValueMap>
+        <ValueMap>
+          <Value DefaultId="DataItem6" />
+          <UniformScale />
+          <GradientPalette StartColor="-32768" EndColor="-16777024" />
+        </ValueMap>
+        <ValueMap>
+          <Value DefaultId="DataItem7" />
+          <UniformScale />
+          <GradientPalette StartColor="-16728064" EndColor="-8388480" />
+        </ValueMap>
+        <ValueMap>
+          <Value DefaultId="DataItem8" />
+          <UniformScale />
+          <GradientPalette StartColor="-256" EndColor="-8388480" />
+        </ValueMap>
+      </Maps>
+    </ChoroplethMap>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="18.343815513626833" />
+      <LayoutItem DashboardItem="choroplethMapDashboardItem1" Weight="81.656184486373164" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

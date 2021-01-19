@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_DASHBOARDORNEK1_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="DESKTOP-RFML4O9\SQLEXPRESS" />
+          <Parameter Name="database" Value="DASHBOARDORNEK1" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM MATCH_SCORES
+
+WHERE LEAGUENAME='England Premier League' AND SEASON ='2014/2015'</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="COUNTRY" Type="String" />
+            <Field Name="LEAGUENAME" Type="String" />
+            <Field Name="HOMETEAM" Type="String" />
+            <Field Name="AWAYTEAM" Type="String" />
+            <Field Name="MATCHID" Type="Int32" />
+            <Field Name="SEASON" Type="String" />
+            <Field Name="STAGE" Type="Int32" />
+            <Field Name="DATE" Type="String" />
+            <Field Name="HOME_TEAM_GOAL" Type="Int32" />
+            <Field Name="AWAY_TEAM_GOAL" Type="Int32" />
+            <Field Name="RESULT" Type="Int32" />
+            <Field Name="POINT" Type="Int32" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ScatterChart ComponentName="scatterChartDashboardItem1" Name="Scatter Chart 1" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="HOME_TEAM_GOAL" Name="Atılan Gol" DefaultId="DataItem0" />
+        <Measure DataMember="AWAY_TEAM_GOAL" Name="Yenilen Gol" DefaultId="DataItem1" />
+        <Measure DataMember="POINT" Name="Puan" DefaultId="DataItem2" />
+        <Dimension DataMember="HOMETEAM" Name="Takım" DefaultId="DataItem3" />
+      </DataItems>
+      <PointLabelOptions Visible="true" Content="ArgumentAndWeight" />
+      <MeasureX DefaultId="DataItem0" />
+      <MeasureY DefaultId="DataItem1" />
+      <MeasureWeight DefaultId="DataItem2" />
+      <Dimensions>
+        <Dimension DefaultId="DataItem3" />
+      </Dimensions>
+    </ScatterChart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="scatterChartDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

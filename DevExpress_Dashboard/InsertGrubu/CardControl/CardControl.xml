@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_DASHBOARDORNEK1_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="DESKTOP-RFML4O9\SQLEXPRESS" />
+          <Parameter Name="database" Value="DASHBOARDORNEK1" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM SALETARGETS</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="LOGICALREF" Type="Int32" />
+            <Field Name="REGION" Type="String" />
+            <Field Name="BRANCH" Type="String" />
+            <Field Name="CITY" Type="String" />
+            <Field Name="MONTH_" Type="Int32" />
+            <Field Name="DATE_" Type="DateTime" />
+            <Field Name="CATEGORY_NAME1" Type="String" />
+            <Field Name="LINENET" Type="Double" />
+            <Field Name="TARGET_" Type="Double" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Card ComponentName="cardDashboardItem1" Name="Bölge Bazlı Hedefe Olan Uzaklık" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="LINENET" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="TARGET_" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="REGION" DefaultId="DataItem2" />
+        <Dimension DataMember="DATE_" DateTimeGroupInterval="Month" DefaultId="DataItem3" />
+        <Dimension DataMember="CITY" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem4" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+        <SeriesDimension DefaultId="DataItem4" />
+      </SeriesDimensions>
+      <Card Name="Toplam Satış / Hedef">
+        <ActualValue DefaultId="DataItem0" />
+        <TargetValue DefaultId="DataItem1" />
+        <AbsoluteVariationNumericFormat Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        <PercentVariationNumericFormat CustomFormatString="" />
+        <PercentOfTargetNumericFormat CustomFormatString="" />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="TargetValue" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+      <SparklineArgument DefaultId="DataItem3" />
+    </Card>
+  </Items>
+  <ColorScheme>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-785920">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Akdeniz" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-3833">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Doğu Anadolu" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-16318717">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Ege" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-16716044">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Güneydoğu Anadolu" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-16580356">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="İç Anadolu" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-4062988">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Karadeniz" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" Color="-13842540">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="REGION" />
+          <Value Type="System.String" Value="Marmara" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+  </ColorScheme>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="cardDashboardItem1" Weight="67.190775681341719" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

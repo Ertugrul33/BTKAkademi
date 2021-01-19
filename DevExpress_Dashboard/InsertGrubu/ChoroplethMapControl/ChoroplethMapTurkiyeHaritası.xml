@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_DASHBOARDORNEK1_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="DESKTOP-RFML4O9\SQLEXPRESS" />
+          <Parameter Name="database" Value="DASHBOARDORNEK1" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM SALES</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="LOGICALREF" Type="Int32" />
+            <Field Name="COUNT_" Type="Int32" />
+            <Field Name="TARGET_" Type="Int32" />
+            <Field Name="ITEMCODE" Type="String" />
+            <Field Name="ITEMNAME" Type="String" />
+            <Field Name="FICHENO" Type="String" />
+            <Field Name="DATE_" Type="DateTime" />
+            <Field Name="AMOUNT" Type="Double" />
+            <Field Name="PRICE" Type="Double" />
+            <Field Name="LINETOTAL" Type="Double" />
+            <Field Name="LINENET" Type="Double" />
+            <Field Name="BRANCHNR" Type="Int32" />
+            <Field Name="BRANCH" Type="String" />
+            <Field Name="SALESMAN" Type="String" />
+            <Field Name="CITY" Type="String" />
+            <Field Name="REGION" Type="String" />
+            <Field Name="LATITUDE" Type="Double" />
+            <Field Name="LONGITUDE" Type="Double" />
+            <Field Name="CLIENTNAME" Type="String" />
+            <Field Name="BRANDCODE" Type="String" />
+            <Field Name="BRAND" Type="String" />
+            <Field Name="CATEGORY" Type="String" />
+            <Field Name="CATEGORYCODE" Type="String" />
+            <Field Name="CATEGORY_CODE1" Type="String" />
+            <Field Name="CATEGORY_NAME1" Type="String" />
+            <Field Name="CATEGORY_CODE2" Type="String" />
+            <Field Name="CATEGORY_NAME2" Type="String" />
+            <Field Name="CATEGORY_CODE3" Type="String" />
+            <Field Name="CATEGORY_NAME3" Type="String" />
+            <Field Name="CATEGORY_CODE4" Type="String" />
+            <Field Name="CATEGORY_NAME4" Type="String" />
+            <Field Name="STARTDATE" Type="DateTime" />
+            <Field Name="ENDDATE" Type="DateTime" />
+            <Field Name="CLIENTGENDER" Type="String" />
+            <Field Name="CLIENTBIRTHDATE" Type="DateTime" />
+            <Field Name="BUYINGPRICE" Type="Double" />
+            <Field Name="COST" Type="Double" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Şehirlerin Satışları" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="CITY" Name="Şehir" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" Name="Satış Tutarı" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Weight="92">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="58">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <ChoroplethMap ComponentName="choroplethMapDashboardItem1" Name="Türkiye Haritası" DataSource="dashboardSqlDataSource1" DataMember="Query" ShapefileArea="Custom" ShapeTitleAttributeName="NAME" AttributeName="NAME" IncludeSummaryValueToShapeTitle="true">
+      <DataItems>
+        <Measure DataMember="LINENET" Name="Toplam Satış" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CITY" DefaultId="DataItem1" />
+        <Measure DataMember="COUNT_" Name="Toplam Satış Sayısı" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="ITEMNAME" Name="Satılan Ürün Çeşidi" SummaryType="CountDistinct" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <CustomShapefile Url="C:\Users\lenovo\Documents\Notlarım\BTK Akademi\DevExpress Dashboard İle İş Zekası ve Veri Analitiği\DevexpressDashboardKaynaklar\shp\Il.shp" />
+      <ViewArea TopLatitude="42.0983882" BottomLatitude="35.8136997" LeftLongitude="25.668509" RightLongitude="44.817931" CenterPointLatitude="39.025835264804208" CenterPointLongitude="35.243220000000008" />
+      <MapLegend Visible="true" Position="BottomCenter" Orientation="Horizontal" />
+      <WeightedLegend />
+      <AttributeDimension DefaultId="DataItem1" />
+      <Maps>
+        <ValueMap>
+          <Value DefaultId="DataItem0" />
+          <CustomScale>
+            <RangeStop>0</RangeStop>
+            <RangeStop>1</RangeStop>
+            <RangeStop>2</RangeStop>
+            <RangeStop>3</RangeStop>
+            <RangeStop>4</RangeStop>
+            <RangeStop>5</RangeStop>
+            <RangeStop>6</RangeStop>
+            <RangeStop>7</RangeStop>
+            <RangeStop>8</RangeStop>
+            <RangeStop>9</RangeStop>
+            <RangeStop>10</RangeStop>
+            <RangeStop>11</RangeStop>
+            <RangeStop>12</RangeStop>
+            <RangeStop>13</RangeStop>
+            <RangeStop>14</RangeStop>
+            <RangeStop>15</RangeStop>
+            <RangeStop>20</RangeStop>
+            <RangeStop>25</RangeStop>
+            <RangeStop>28</RangeStop>
+            <RangeStop>30</RangeStop>
+          </CustomScale>
+          <CustomPalette>
+            <Color>-13194546</Color>
+            <Color>-12540215</Color>
+            <Color>-11820348</Color>
+            <Color>-11166017</Color>
+            <Color>-10446151</Color>
+            <Color>-9791820</Color>
+            <Color>-9071953</Color>
+            <Color>-8352086</Color>
+            <Color>-7697756</Color>
+            <Color>-6977889</Color>
+            <Color>-6323558</Color>
+            <Color>-5603691</Color>
+            <Color>-4949361</Color>
+            <Color>-4229494</Color>
+            <Color>-3509627</Color>
+            <Color>-2855296</Color>
+            <Color>-2135430</Color>
+            <Color>-1481099</Color>
+            <Color>-761232</Color>
+            <Color>-65536</Color>
+          </CustomPalette>
+        </ValueMap>
+        <ValueMap>
+          <Value DefaultId="DataItem2" />
+          <UniformScale />
+        </ValueMap>
+        <ValueMap>
+          <Value DefaultId="DataItem3" />
+          <UniformScale />
+        </ValueMap>
+      </Maps>
+    </ChoroplethMap>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="18.343815513626833" />
+      <LayoutItem DashboardItem="choroplethMapDashboardItem1" Weight="81.656184486373164" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

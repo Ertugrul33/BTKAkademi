@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Satis Raporu1" />
+  <DataSources>
+    <SqlDataSource Name="SALES" ComponentName="sqlDataSource1">
+      <Connection Name="ORNEKDASHBOARD1" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="SALES">
+        <Tables>
+          <Table Name="SALES" />
+        </Tables>
+        <Columns>
+          <Column Table="SALES" Name="LOGICALREF" />
+          <Column Table="SALES" Name="COUNT_" />
+          <Column Table="SALES" Name="TARGET_" />
+          <Column Table="SALES" Name="ITEMCODE" />
+          <Column Table="SALES" Name="ITEMNAME" />
+          <Column Table="SALES" Name="FICHENO" />
+          <Column Table="SALES" Name="DATE_" />
+          <Column Table="SALES" Name="AMOUNT" />
+          <Column Table="SALES" Name="PRICE" />
+          <Column Table="SALES" Name="LINETOTAL" />
+          <Column Table="SALES" Name="LINENET" />
+          <Column Table="SALES" Name="BRANCHNR" />
+          <Column Table="SALES" Name="BRANCH" />
+          <Column Table="SALES" Name="SALESMAN" />
+          <Column Table="SALES" Name="CITY" />
+          <Column Table="SALES" Name="REGION" />
+          <Column Table="SALES" Name="LATITUDE" />
+          <Column Table="SALES" Name="LONGITUDE" />
+          <Column Table="SALES" Name="CLIENTNAME" />
+          <Column Table="SALES" Name="BRANDCODE" />
+          <Column Table="SALES" Name="BRAND" />
+          <Column Table="SALES" Name="CATEGORY" />
+          <Column Table="SALES" Name="CATEGORYCODE" />
+          <Column Table="SALES" Name="CATEGORY_CODE1" />
+          <Column Table="SALES" Name="CATEGORY_NAME1" />
+          <Column Table="SALES" Name="CATEGORY_CODE2" />
+          <Column Table="SALES" Name="CATEGORY_NAME2" />
+          <Column Table="SALES" Name="CATEGORY_CODE3" />
+          <Column Table="SALES" Name="CATEGORY_NAME3" />
+          <Column Table="SALES" Name="CATEGORY_CODE4" />
+          <Column Table="SALES" Name="CATEGORY_NAME4" />
+          <Column Table="SALES" Name="STARTDATE" />
+          <Column Table="SALES" Name="ENDDATE" />
+          <Column Table="SALES" Name="CLIENTGENDER" />
+          <Column Table="SALES" Name="CLIENTBIRTHDATE" />
+          <Column Table="SALES" Name="BUYINGPRICE" />
+          <Column Table="SALES" Name="COST" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Şehirlere Göre Satışlar" DataSource="sqlDataSource1" DataMember="SALES">
+      <DataItems>
+        <Dimension DataMember="CITY" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Şehir">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Toplam Satış">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Chart ComponentName="chartDashboardItem1" Name="Kategorilere Göre Satışlar" DataSource="sqlDataSource1" DataMember="SALES">
+      <DataItems>
+        <Dimension DataMember="CATEGORY_NAME1" DefaultId="DataItem0" />
+        <Measure DataMember="LINENET" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="gridDashboardItem1" />
+      <LayoutItem DashboardItem="chartDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
